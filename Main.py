@@ -1,30 +1,32 @@
+import os
+import json
 from Core.Networking.Server import Server
-import json  # meh
-
 from Utils.Updater import Updater
-
 
 class Main:
     def __init__(self):
-        self.crashCount: int = 0
-        self.configuration = json.loads(open("config.json", "r").read())
+        self.crashCount = 0
+        try:
+            with open("config.json", "r") as f:
+                self.configuration = json.loads(f.read())
+        except:
+            self.configuration = {}
         self.useUpdater = self.configuration.get("UpgradesEnabled", False)
-        self.main()
-        self.updater: Updater = None
+        self.updater = None
 
-def main(self):
-import os
+    def main(self):
         port = int(os.environ.get("PORT", 9339))
         try:
-            print("Server starting...")
+            print(f"Server starting on port {port}...")
             Server("0.0.0.0", port).start()
         except Exception as e:
             print(f"Encountered exception: {e}")
-            if self.crashCount >= 2:
+            if self.crashCount < 2:
+                self.crashCount += 1
+                self.main()
+            else:
+                print("Too many crashes, exiting.")
                 exit()
-            self.crashCount += 1
-            self.main()
 
 if __name__ == '__main__':
     Main().main()
-                
