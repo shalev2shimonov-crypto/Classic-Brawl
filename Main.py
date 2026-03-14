@@ -12,31 +12,14 @@ class Main:
         self.main()
         self.updater: Updater = None
 
-    def main(self):
-        if self.useUpdater: self.updater = Updater()  # Execute deadly weapons
-
-        if self.useUpdater and not self.updater.updateInstalled and self.crashCount >= 2:
-            print("No fixes are available for the crashes. Shutting down server...")
-            exit()
-
+def main(self):
+        import os
+        port = int(os.environ.get("PORT", 9339))
         try:
-            print(r"""
-   ________                _         ____                      __
-  / ____/ /___ ___________(_)____   / __ )_________ __      __/ /
- / /   / / __ `/ ___/ ___/ / ___/  / __  / ___/ __ `/ | /| / / / 
-/ /___/ / /_/ (__  |__  ) / /__   / /_/ / /  / /_/ /| |/ |/ / /  
-\____/_/\__,_/____/____/_/\___/  /_____/_/   \__,_/ |__/|__/_/   
-
-            """)
-
-            Server("0.0.0.0", 9339).start()
-        except ImportError:
-            print("Some modules are missing, please run pip install -r requirements.txt on your terminal to install them.")
-
+            print("Server starting...")
+            Server("0.0.0.0", port).start()
         except Exception as e:
-            print(f"Encountered exception: {e}") 
-            if self.useUpdater:
-                self.crashCount += 1
+            print(f"Encountered exception: {e}")
 
                 if self.crashCount >= 2:
                     # TODO: Close all connections so that the server gets a bit faster on fixing stuff
