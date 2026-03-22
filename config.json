@@ -1,5 +1,5 @@
 {
-  "MongoConnectionURL": "",
+  "MongoConnectionURL": "mongodb+srv://shalev2shimonov_db_user:shimonov248@cluster0.vscly.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
   "UpgradesEnabled": false,
   "ClubWarsEnabled": false,
   "StarPoints": 5000,
