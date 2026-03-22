@@ -1,5 +1,5 @@
 {
-  "MongoConnectionURL": "mongodb+srv://shalev2shimonov_db_user:shimonov248@cluster0.vscly.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  "MongoConnectionURL": "mongodb+srv://shalev2shimonov_db_user:shimonov248@cluster0.vscly.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
   "UpgradesEnabled": false,
   "ClubWarsEnabled": false,
   "StarPoints": 5000,
@@ -17,6 +17,6 @@
   "Maintenance": false,
   "SecondsTillMaintenanceOver": 3600,
   "Patch": false,
-  "PatchURL": "http://192.168.0.103:8080/",
+  "PatchURL": "http://192.168.0.103:8",
   "UpdateURL": ""
 }
