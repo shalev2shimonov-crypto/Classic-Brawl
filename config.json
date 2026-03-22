@@ -1,5 +1,5 @@
 {
-  "MongoConnectionURL": "mongodb://shalev2shimonov_db_user:shimonov248@cluster0-shard-00-00.vscly.mongodb.net:27017,cluster0-shard-00-01.vscly.mongodb.net:27017,cluster0-shard-00-02.vscly.mongodb.net:27017/?ssl=true&replicaSet=atlas-139z5e-shard-0&authSource=admin&retryWrites=true&w=majority",
+  "MongoConnectionURL": "mongodb+srv://shalev2shimonov_db_user:shimonov248@cluster0.n7yoa6c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
   "UpgradesEnabled": false,
   "ClubWarsEnabled": false,
   "StarPoints": 5000,
