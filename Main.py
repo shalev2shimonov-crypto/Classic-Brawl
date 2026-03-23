@@ -1,32 +1,26 @@
 import os
 import json
-from Core.Networking.Server import Server
-from Utils.Updater import Updater
+
+# Try to import the server logic, if it fails it will show in the logs
+try:
+    from Core.Networking.Server import Server
+except ImportError:
+    print("Error: Could not find Core.Networking.Server. Make sure your files are uploaded correctly.")
 
 class Main:
     def __init__(self):
-        self.crashCount = 0
-        try:
-            with open("config.json", "r") as f:
-                self.configuration = json.loads(f.read())
-        except:
-            self.configuration = {}
-        self.useUpdater = self.configuration.get("UpgradesEnabled", False)
-        self.updater = None
+        # This tells the server which port to use for Render
+        self.port = int(os.environ.get("PORT", 9339))
 
-    def main(self):
-        port = int(os.environ.get("PORT", 9339))
+    def start(self):
+        print(f"Server is starting on port {self.port}...")
         try:
-            print(f"Server starting on port {port}...")
-            Server("0.0.0.0", port).start()
+            # Starting the Brawl Stars server
+            server = Server("0.0.0.0", self.port)
+            server.start()
         except Exception as e:
-            print(f"Encountered exception: {e}")
-            if self.crashCount < 2:
-                self.crashCount += 1
-                self.main()
-            else:
-                print("Too many crashes, exiting.")
-                exit()
+            print(f"Server Error: {e}")
 
-if __name__ == '__main__':
-    Main().main()
+if __name__ == "__main__":
+    Main().start()
+    
